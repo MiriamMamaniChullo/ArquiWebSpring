@@ -17,7 +17,7 @@ public class Interes {
     private Anuncio anuncio;
 
     @ManyToOne
-    @JoinColumn(name = "idAdultoJoven", nullable = false)
+    @JoinColumn(name = "id", nullable = false)
     private AdultoJoven adultoJoven;
 
     public Interes() {
