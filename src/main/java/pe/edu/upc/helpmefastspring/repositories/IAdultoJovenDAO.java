@@ -9,7 +9,7 @@ import pe.edu.upc.helpmefastspring.entities.AdultoJoven;
 import java.util.List;
 
 @Repository
-public interface IAdultoJovenRepository extends JpaRepository<AdultoJoven, Integer> {
+public interface IAdultoJovenDAO extends JpaRepository<AdultoJoven, Integer> {
     @Query("from AdultoJoven aj where aj.nombre like %:nombre% OR LOWER(aj.nombre)" +
             "like %:nombre% OR aj.nombre like %:nombre%")
     List<AdultoJoven> buscarAdultoJoven(@Param("nombre") String nombre);

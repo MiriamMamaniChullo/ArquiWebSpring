@@ -6,9 +6,10 @@ import pe.edu.upc.helpmefastspring.entities.AdultoJoven;
 import pe.edu.upc.helpmefastspring.serviceinterfaces.IAdultoJovenService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/adultoJoven")
+@RequestMapping("/adultojoven")
 public class AdultoJovenController {
     @Autowired
     private IAdultoJovenService ajService;
@@ -31,4 +32,10 @@ public class AdultoJovenController {
     public List<AdultoJoven> buscar(@RequestBody AdultoJoven aj){
         return ajService.search(aj.getNombre());
     }
+
+    @GetMapping("/{id}")
+    public Optional<AdultoJoven> listarId(@PathVariable("id") Integer id) {
+        return ajService.listarId(id);
+    }
+
 }

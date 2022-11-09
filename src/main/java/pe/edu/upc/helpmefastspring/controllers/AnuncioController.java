@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.helpmefastspring.entities.Anuncio;
 import pe.edu.upc.helpmefastspring.serviceinterfaces.IAnuncioService;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/anuncios")
@@ -26,5 +28,11 @@ public class AnuncioController {
     public void actualizar(@RequestBody Anuncio a){aService.insert(a);}
 
     @PostMapping("/buscar")
-    public List<Anuncio> buscar(@RequestBody Anuncio a){return aService.search(a.getServicio());}
+    public List<Anuncio> buscar(@RequestBody Anuncio a) throws ParseException {
+        return aService.search(a.getServicio().getDescServicios());
+    }
+    @GetMapping("/{id}")
+    public Optional<Anuncio> listarId(@PathVariable("id") Integer id) {
+        return aService.listarId(id);
+    }
 }

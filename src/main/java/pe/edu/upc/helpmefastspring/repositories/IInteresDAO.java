@@ -9,7 +9,7 @@ import pe.edu.upc.helpmefastspring.entities.Interes;
 import java.util.List;
 
 @Repository
-public interface IInteresRepository extends JpaRepository<Interes,Integer> {
+public interface IInteresDAO extends JpaRepository<Interes,Integer> {
     @Query("from Interes i where i.levelInteres like %:levelInteres% OR LOWER(i.levelInteres)" +
             "like %:levelInteres% OR i.levelInteres like %:levelInteres%")
     List<Interes> buscarNivel(@Param("levelInteres") String levelInteres);

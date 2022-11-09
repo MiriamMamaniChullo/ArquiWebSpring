@@ -8,7 +8,7 @@ import pe.edu.upc.helpmefastspring.entities.Enfermero;
 
 import java.util.List;
 @Repository
-public interface IEnfermeroRepository extends JpaRepository<Enfermero,Integer>{
+public interface IEnfermeroDAO extends JpaRepository<Enfermero,Integer>{
 
     @Query("FROM Enfermero p WHERE p.nameEnfermero LIKE %:nameEnfermero% OR LOWER(p.nameEnfermero)" +
             "LIKE %:nameEnfermero% OR p.nameEnfermero LIKE %:nameEnfermero%")

@@ -1,6 +1,11 @@
 package pe.edu.upc.helpmefastspring.entities;
 
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="Anuncio")
@@ -10,18 +15,23 @@ public class Anuncio {
     private int idAnuncio;
     @Column(name = "precioServicio",length = 3,nullable = false)
     private int precioServicio;
-    @Column(name = "fechaPublicación",length = 10,nullable = false)
-    private String fechaPublicación;
-    @Column(name = "servicio",length = 40,nullable = false)
-    private String servicio;
+
+    @Column(name = "fechaPublicacion")
+    @JsonSerialize(using = ToStringSerializer.class)
+    private LocalDate fechaPublicacion;
+    @ManyToOne
+    @JoinColumn(name="idServicio", nullable=false)
+    private Servicios servicio;
 
     public Anuncio() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
-    public Anuncio(int idAnuncio, int precioServicio, String fechaPublicación, String servicio) {
+    public Anuncio(int idAnuncio, int precioServicio, LocalDate fechaPublicacion, Servicios servicio) {
         this.idAnuncio = idAnuncio;
         this.precioServicio = precioServicio;
-        this.fechaPublicación = fechaPublicación;
+        this.fechaPublicacion = fechaPublicacion;
         this.servicio = servicio;
     }
 
@@ -41,19 +51,19 @@ public class Anuncio {
         this.precioServicio = precioServicio;
     }
 
-    public String getFechaPublicación() {
-        return fechaPublicación;
+    public LocalDate getFechaPublicacion() {
+        return fechaPublicacion;
     }
 
-    public void setFechaPublicación(String fechaPublicación) {
-        this.fechaPublicación = fechaPublicación;
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
 
-    public String getServicio() {
+    public Servicios getServicio() {
         return servicio;
     }
 
-    public void setServicio(String servicio) {
+    public void setServicio(Servicios servicio) {
         this.servicio = servicio;
     }
 }
